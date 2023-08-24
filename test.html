@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Demo page of the widget</title>
+    <script src="dist/todo-widget.min.js"></script>
+</head>
+<body>
+<h1>My test website</h1>
+<p>My website text</p>
+
+<!-- Here I put some container where I want my chat to be (size it accordingly) -->
+<div id="custom-container" style="height: 600px; width: 800px;"></div>
+<script>
+    OpenCopilot.initialize({
+        containerId: "custom-container",
+        url: ""
+    });
+</script>
+</body>
+</html>
