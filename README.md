@@ -16,4 +16,3 @@ Open test.html in browser
 - User imports the .js file and runs OpenCopilot.initialize(...) in their frontend
 
 Check test.html for an example
-

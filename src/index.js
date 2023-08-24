@@ -1,4 +1,5 @@
 import styles from "./css/main.scss";
+import html from "../index.html";
 
 (function (window, document) {
 
@@ -29,7 +30,7 @@ import styles from "./css/main.scss";
     function initializeWidget(options) {
         const defaultOptions = {
             endpoint: 'https://your-api.com/news',
-            containerId: 'news-widget-container'
+            containerId: 'opencopilot-container'
         };
 
         const config = {...defaultOptions, ...options};
@@ -38,22 +39,27 @@ import styles from "./css/main.scss";
         // document.getElementById(config.containerId).appendChild(renderedWidget);
 
 
-        const container = document.createElement('div');
-        const element = document.createElement('p');
-        element.className = "random"
-        element.textContent = "This text comes from widget with its own style"
-        container.appendChild(element);
+        // const container = document.createElement('div');
+        // const element = document.createElement('p');
+        // element.className = "random"
+        // element.textContent = "This text comes from widget with its own style"
+        // container.appendChild(element);
+        // const style = document.createElement("style")
+        // style.innerHTML = styles.toString()
+        // container.appendChild(style)
+        // document.getElementById(config.containerId).appendChild(container);
 
-        const style = document.createElement("style")
-        style.innerHTML = styles.toString()
-        container.appendChild(style)
-
-        document.getElementById(config.containerId).appendChild(container);
 
         // document.getElementById(config.containerId).innerHTML = `
         // <style>${styles.toString()}</style>
         // <p>random widget text</p>
         // `
+
+        // const style = `<style>${styles.toString()}</style>`
+        // const style = `<style></style>`
+        // html += "asd"
+        document.getElementById(config.containerId).innerHTML = html
+
     }
 
     // Expose the initialize function to the global scope for clients to use
