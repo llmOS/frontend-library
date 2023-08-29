@@ -1,58 +1,72 @@
-
+const webpack = require('webpack')
+const tailwindcss = require('tailwindcss');
 const path = require('path');
-// const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const webpack = require('webpack');
-
-const libraryName = 'todo-widget'; // TODO: Change me
-const outputFile = `${libraryName}.min.js`;
-
 
 module.exports = {
-  entry: './src/index.js',
-  output: {
-    library: libraryName,
-    libraryTarget: 'umd',
-    libraryExport: 'default',
-    path: path.resolve(__dirname, 'dist'),
-    filename: outputFile,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
+    entry: './app/index.tsx',  // Updated to .tsx if your entry is a React component
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'opencopilot.js',
+        library: 'OpenCopilot',
+        libraryTarget: 'umd'
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],  // Added .tsx and .ts
+        fallback: {
+            crypto: require.resolve('crypto-browserify'),
+            os: require.resolve("os-browserify/browser"),
+        },
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,  // Matches both .ts and .tsx
+                use: 'ts-loader',
+                exclude: /node_modules/
             },
-          },
-        ],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
-      },
-      {
-        test: /\.(png|jp(e*)g|svg)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 20000, // Convert images < 8kb to base64 strings
-            name: 'img/[hash]-[name].[ext]',
-          },
-        }],
-      },
-    ],
-  },
-  plugins: [
-    // new uglifyJsPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
-  mode: "production"
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react']
+                    }
+                }
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    // Creates `style` nodes from JS strings
+                    "style-loader",
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "postcss-loader",
+                    "sass-loader",
+                ],
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader", "postcss-loader"],
+            }
+        ]
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
+        }),
+    ]
 };

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCopilot demo</title>
+    <!-- Include your library -->
+    <script src="dist/opencopilot.js"></script>
+</head>
+<body>
+    <!-- random styling atm -->
+    <div style="height: 100vh">jo</div>
+
+    <div id="embedded" style="position: relative; width: 1200px; height: 800px; border: 1px solid black; margin: 100px auto;"></div>
+<!--    <div id="embedded" style="position: relative; width: 100vw; height: 100vh; border: 1px solid black; margin: 0;"></div>-->
+<!--    <div id="embedded" style="position: relative; width: 400px; height: 600px; border: 1px solid black; margin: 0;"></div>-->
+
+    <script>
+        // console.log(OpenCopilot.default.initialize)
+        // Initialize your component
+        OpenCopilot.initialize({
+            elementId: "embedded", // The argument is the id of the element where the component should be rendered
+            theme: "light",
+            apiUrl: "http://localhost:3000/",
+            authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTMzMTI4MTQuMTQ4ODA0MiwiZXhwIjoxNjkzMzk5MzE0LjE0ODgwNDIsInN1YiI6InN0cmluZyJ9.myMdVVadOaICXrNYL4lk1vgK0eh5l3XzCCsqxmkhnkk",
+        });
+    </script>
+<style>
+    body {
+      /*background: white;*/
+    }
+</style>
+</body>
+</html>
