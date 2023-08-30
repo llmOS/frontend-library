@@ -7,8 +7,15 @@ If you are looking for the repository of the OpenCopilot Python framework, see [
 The front-end is built on top of the Verel AI SDK and branched off of the [Next.js AI chatbot](https://github.com/vercel-labs/ai-chatbot), for which the original README is below. These instructions are not kept up to date; please visit the [OpenCopilot docs](https://docs.opencopilot.dev/) to read about setting up a development environment.
 
 
-## Setup when importing as library
-See [a relative link](embed.html)
+## Setup
+
+Building:
+```
+pnpm run build-library
+```
+This generates .js file in dist directory
+
+See [example](embed.html) for usage example
 
 If using eslint then might need to add this to eslint:
 ```

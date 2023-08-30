@@ -150,6 +150,7 @@ export function Chat(
           <div
             className={cn('oc-pb-[200px] oc-pt-4 oc-md:pt-10', className)}
             style={{overflow: "auto", height: "100%"}}
+            id="oc-chat-messages-wrapper"
           >
             {messages.length ? (
               <>

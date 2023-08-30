@@ -19,15 +19,14 @@ export function ButtonScrollToBottom({className, ...props}: ButtonProps) {
         isAtBottom ? 'oc-opacity-0' : 'oc-opacity-100',
         className
       )}
-      onClick={() =>
-        window.scrollTo({
-          top: document.body.offsetHeight,
-          behavior: 'smooth'
-        })
-      }
+      onClick={() => {
+        const objDiv = document.getElementById("oc-chat-messages-wrapper");
+        if (objDiv)
+        objDiv.scrollTop = objDiv.scrollHeight;
+      }}
       {...props}
     >
-      <IconArrowDown />
+      <IconArrowDown/>
       <span className="sr-only">Scroll to bottom</span>
     </Button>
   )

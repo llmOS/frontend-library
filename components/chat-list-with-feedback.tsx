@@ -3,7 +3,7 @@ import {type UseChatHelpers} from '../lib/hooks/use-chat'
 
 import {Separator} from './ui/separator'
 import {ChatMessage} from './chat-message'
-import {FeedbackForm} from './feedback-form';
+// import {FeedbackForm} from './feedback-form';
 import {useUser} from "../lib/hooks/user-provider";
 
 export interface ChatListWithFeedbackProps
@@ -50,42 +50,42 @@ export function ChatListWithFeedback(
         </div>
       ))}
 
-      {isLastMessageByAssistant ?
-        <FeedbackForm
-          onSubmit={async (value) => {
-            try {
-              const feedback: any = {
-                id: value.id,
-                correctness: value.correctness,
-                helpfulness: value.helpfulness,
-                easy_to_understand: value.easy_to_understand,
-                free_form_feedback: value.free_form_feedback,
-              };
-              Object.keys(feedback).forEach(key => {
-                if (feedback[key] === null) {
-                  delete feedback[key];
-                }
-              });
-              const response = await fetch(
-                (new URL(`/v0/conversation/${id}/feedback`, apiBaseUrl)).toString(),
-                {
-                  method: "POST",
-                  headers: {
-                    "accept": "application/json",
-                    "Content-Type": "application/json",
-                    // "email": email || "",
-                    "Authorization": `Bearer ${jwt || ""}`
-                  },
-                  body: JSON.stringify(feedback)
-                });
+      {/*{isLastMessageByAssistant ?*/}
+      {/*  <FeedbackForm*/}
+      {/*    onSubmit={async (value) => {*/}
+      {/*      try {*/}
+      {/*        const feedback: any = {*/}
+      {/*          id: value.id,*/}
+      {/*          correctness: value.correctness,*/}
+      {/*          helpfulness: value.helpfulness,*/}
+      {/*          easy_to_understand: value.easy_to_understand,*/}
+      {/*          free_form_feedback: value.free_form_feedback,*/}
+      {/*        };*/}
+      {/*        Object.keys(feedback).forEach(key => {*/}
+      {/*          if (feedback[key] === null) {*/}
+      {/*            delete feedback[key];*/}
+      {/*          }*/}
+      {/*        });*/}
+      {/*        const response = await fetch(*/}
+      {/*          (new URL(`/v0/conversation/${id}/feedback`, apiBaseUrl)).toString(),*/}
+      {/*          {*/}
+      {/*            method: "POST",*/}
+      {/*            headers: {*/}
+      {/*              "accept": "application/json",*/}
+      {/*              "Content-Type": "application/json",*/}
+      {/*              // "email": email || "",*/}
+      {/*              "Authorization": `Bearer ${jwt || ""}`*/}
+      {/*            },*/}
+      {/*            body: JSON.stringify(feedback)*/}
+      {/*          });*/}
 
-            } catch (error) {
-              console.error('There has been a problem with your fetch operation:', error);
-            }
-          }}
-          id={id || ""}
-        />
-        : <></>}
+      {/*      } catch (error) {*/}
+      {/*        console.error('There has been a problem with your fetch operation:', error);*/}
+      {/*      }*/}
+      {/*    }}*/}
+      {/*    id={id || ""}*/}
+      {/*  />*/}
+      {/*  : <></>}*/}
 
 
     </div>

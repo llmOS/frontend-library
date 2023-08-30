@@ -67,7 +67,7 @@ export function ChatPanel({
             )
           )}
         </div>
-        <div className="oc-space-y-4 oc-border-t oc-bg-background oc-px-4 oc-py-2 oc-shadow-lg sm:oc-rounded-xl sm:oc-border md:oc-py-4">
+        <div className="oc-space-y-4 oc-border-t oc-bg-background oc-px-4 oc-py-2 sm:oc-rounded-xl sm:oc-border md:oc-py-4">
           <PromptForm
             onSubmit={async value => {
               if (value.length > MAX_MESSAGE_LENGTH) {
