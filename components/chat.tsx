@@ -6,7 +6,7 @@ import {cn} from '../lib/utils'
 import {EmptyScreen} from './empty-screen'
 import {ChatScrollAnchor} from './chat-scroll-anchor'
 import {ChatListWithFeedback} from "./chat-list-with-feedback";
-import {toast} from 'react-hot-toast'
+import {toast, Toaster} from 'react-hot-toast'
 import {Message} from "../lib/types";
 import {useChat} from "../lib/hooks/use-chat";
 import {Debug, DebugMetric, DebugMetrics} from "./debug";
@@ -65,6 +65,9 @@ export function Chat(
       onResponse(response) {
         if (response.status === 401) {
           toast.error(response.statusText)
+        }
+        if (response.status === 429) {
+          toast.error("Rate limit exceeded. Please try again later.")
         }
       },
       onFinish(message: Message) {
@@ -144,6 +147,7 @@ export function Chat(
         style={{height: "100%"}}
       >
         <div style={{width: "100%"}}>
+          <Toaster containerStyle={{position: "absolute", width: "100%", height: "100%", top: 0, left: 0}}/>
           {isDebug && <DebugTrigger isDebugOpen={isDebugOpen} onClick={() => {
             setIsDebugOpen(!isDebugOpen)
           }}/>}
