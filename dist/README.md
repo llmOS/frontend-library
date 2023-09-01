@@ -2,7 +2,8 @@
 
 This is an embeddable front-end for [OpenCopilot](https://docs.opencopilot.dev/).
 
-If you are looking for the repository of the OpenCopilot Python framework, see [opencopilotdev/opencopilot](https://github.com/opencopilotdev/opencopilot).
+If you are looking for the repository of the OpenCopilot Python framework,
+see [opencopilotdev/opencopilot](https://github.com/opencopilotdev/opencopilot).
 
 ## Usage
 
@@ -35,3 +36,15 @@ npm install opencopilot-ui
 </body>
 </html>
 ```
+
+### Use with CDN
+
+Import the latest version from CDN
+```
+<script src="https://unpkg.com/opencopilot-ui/opencopilot.js"></script>
+```
+Import a specific version from CDN
+```
+<script src="https://unpkg.com/opencopilot-ui@0.0.2/opencopilot.js"></script>
+```
+

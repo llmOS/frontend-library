@@ -166,7 +166,7 @@ export function useChat({
           content
         }))
         const requestBody = JSON.stringify({
-          inputs: inputMessages.slice(-1)[0].content,
+          message: inputMessages.slice(-1)[0].content,
           // email: user?.email || "",
           // response_message_id: responseMessageId,
         })

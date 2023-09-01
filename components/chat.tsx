@@ -58,9 +58,9 @@ export function Chat(
 
   function getUrl(): string {
     if (apiBaseUrl) {
-      return (new URL("/v0/conversation_stream/", apiBaseUrl)).toString();
+      return (new URL("/v0/conversations/", apiBaseUrl)).toString();
     }
-    return "/v0/conversation_stream/"
+    return "/v0/conversations/"
   }
 
   const {messages, append, reload, stop, isLoading, input, setInput} =
@@ -81,7 +81,7 @@ export function Chat(
       onFinish(message: Message) {
         getDebugMetrics(message.id, true)
       },
-      api: getUrl() + id
+      api: getUrl() + id + "/stream"
     })
 
   async function getDebugMetrics(messageId: string, isAutomatic: boolean) {
