@@ -31,7 +31,7 @@ export function Chat(
     apiUrl,
     authToken,
   }: ChatProps) {
-  const apiBaseUrl = apiUrl || "http://localhost:3000/"
+  const apiBaseUrl: string | null = apiUrl || null
   const {userId, jwt, email, setJwt} = useUser()
 
   if (authToken) {
@@ -55,6 +55,14 @@ export function Chat(
     window.heap.identify(userId);
     setUserIdentified(true);
   }
+
+  function getUrl(): string {
+    if (apiBaseUrl) {
+      return (new URL("/v0/conversation_stream/", apiBaseUrl)).toString();
+    }
+    return "/v0/conversation_stream/"
+  }
+
   const {messages, append, reload, stop, isLoading, input, setInput} =
     useChat({
       initialMessages,
@@ -73,7 +81,7 @@ export function Chat(
       onFinish(message: Message) {
         getDebugMetrics(message.id, true)
       },
-      api: (new URL("/v0/conversation_stream/", apiBaseUrl)).toString() + id
+      api: getUrl() + id
     })
 
   async function getDebugMetrics(messageId: string, isAutomatic: boolean) {

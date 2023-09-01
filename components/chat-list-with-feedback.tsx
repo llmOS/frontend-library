@@ -21,7 +21,7 @@ export interface ChatListWithFeedbackProps
   isDebug?: boolean
   onDebugMessage: (messageId: string) => void
   debugMessageId: string | undefined
-  apiBaseUrl: string
+  apiBaseUrl: string | null
 }
 
 export function ChatListWithFeedback(

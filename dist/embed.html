@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include the library -->
-    <script src="dist/opencopilot.js"></script>
+    <title>OpenCopilot demo</title>
+    <!-- Include your library -->
+    <script src="node_modules/opencopilot-ui/opencopilot.js"></script>
 </head>
 <body>
     <!--  position this div however you like  -->
@@ -13,8 +14,8 @@
     <script>
         // Initialize your component
         OpenCopilot.initialize({
-            elementId: "embedded", // ID of the element where the component should be rendered
-            theme: "light", // "light" or "dark"
+            elementId: "embedded", // The argument is the id of the element where the component should be rendered
+            theme: "light",
             apiUrl: "http://localhost:3000/", // Optional, defaults to the base URL this is rendered on
             // authToken: "", // If auth is enabled in backend need to input JWT here
         });

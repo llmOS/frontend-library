@@ -1,0 +1,17 @@
+{
+  "name": "opencopilot-ui",
+  "version": "0.0.2",
+  "description": "OpenCopilot embedded chat",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opencopilotdev/frontend-library.git"
+  },
+  "homepage": "https://opencopilot.dev/",
+  "bugs": {
+    "url": "https://github.com/opencopilotdev/frontend-library/issues"
+  },
+  "main": "opencopilot.js",
+  "author": "",
+  "license": "ISC"
+}
