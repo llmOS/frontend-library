@@ -34,18 +34,6 @@ export function getCopilotConfig(copilotName: string | undefined): CopilotConfig
 export const CONFIG: Config = {
   default: {
     EXAMPLE_MESSAGES: [
-      {
-        heading: 'How can I make my own copilot?',
-        message: `How can I make my own copilot?`
-      },
-      {
-        heading: 'What can copilots do?',
-        message: 'What can copilots do?'
-      },
-      {
-        heading: 'How good are open-source LLMs?',
-        message: `How good are open-source LLMs?`
-      },
     ],
     EMPTY_SCREEN_TITLE: "Hey, this is OpenCopilot 👋",
     EMPTY_SCREEN_BODY: "To start building your own custom copilot, please follow our docs [here](https://docs.opencopilot.dev/). Use this UI to quickly chat and test out your copilot during development.",
