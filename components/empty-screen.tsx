@@ -70,7 +70,7 @@ export function EmptyScreen({setInput}: Pick<UseChatHelpers, 'setInput'>) {
 
           <br/>
           <p className="oc-leading-normal oc-text-muted-foreground">
-            You can start a conversation below or try the following examples:
+            You can start a conversation below:
           </p>
           <div className="oc-mt-4 oc-flex oc-flex-col oc-items-start oc-space-y-2">
             {exampleMessages ? <>

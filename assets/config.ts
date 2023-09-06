@@ -47,8 +47,8 @@ export const CONFIG: Config = {
         message: `How good are open-source LLMs?`
       },
     ],
-    EMPTY_SCREEN_TITLE: "Hey, I’m OpenCopilot 👋",
-    EMPTY_SCREEN_BODY: "I’m here to help you make your own copilots!\n To create your own copilot, follow the README [here](https://github.com/opencopilotdev/opencopilot).",
+    EMPTY_SCREEN_TITLE: "Hey, this is OpenCopilot 👋",
+    EMPTY_SCREEN_BODY: "To start building your own custom copilot, please follow our docs [here](https://docs.opencopilot.dev/). Use this UI to quickly chat and test out your copilot during development.",
     FOOTER: "Copilot may produce inaccurate information about people, places, or facts.",
     TAB_TITLE_BASE: "OpenCopilot",
     TAB_TITLE_FORMAT: "%s - OpenCopilot",
