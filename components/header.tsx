@@ -7,18 +7,11 @@ import {SidebarFooter} from '@/components/sidebar-footer'
 import {HeaderLogo} from "@/components/header-logo";
 import {useUser} from "@/lib/hooks/user-provider";
 import {useSidebar} from "@/lib/hooks/sidebar-provider";
-import {useUser as auth0useUser} from "@auth0/nextjs-auth0/client";
 
 export function Header() {
   const { isSidebarOpen, setIsSidebarOpen } = useSidebar() // Use the hook
 
   let {userId} = useUser()
-  const {user} = auth0useUser()
-  if (!userId) {
-    if (user && user.email) {
-      userId = user.email
-    }
-  }
 
   if (!userId) {
     return <header

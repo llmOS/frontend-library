@@ -31,6 +31,7 @@ npm install opencopilot-ui
             theme: "light",
             apiUrl: "http://localhost:3000/", // Optional, defaults to the base URL this is rendered on
             // authToken: "", // If auth is enabled in backend need to input JWT here
+            isDebug: true, // Boolean, determines if debug mode is active or not
         });
     </script>
 </body>

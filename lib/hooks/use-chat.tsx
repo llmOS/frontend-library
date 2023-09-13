@@ -17,7 +17,6 @@ import {saveChat} from "../../app/actions";
 import {useCopilot} from "./copilot-provider";
 import {LoadingMessage} from "../types";
 import {useUser} from "./user-provider";
-import {useUser as auth0useUser} from "@auth0/nextjs-auth0/client";
 
 export type {Message, CreateMessage, UseChatOptions, Feedback, UseFeedbackOptions}
 
@@ -97,12 +96,6 @@ export function useChat({
                           body
                         }: UseChatOptions = {}): UseChatHelpers {
   let {jwt, userId} = useUser()
-  const {user} = auth0useUser()
-  if (!userId) {
-    if (user && user.email) {
-      userId = user.email
-    }
-  }
 
   // Generate a unique id for the chat if not provided.
   const hookId = v4()
@@ -159,7 +152,7 @@ export function useChat({
         // immediately.
         const previousMessages = messagesRef.current
         mutate(messagesSnapshot, false)
-        const responseMessageId: string = v4()
+        let responseMessageId: string = v4()
 
         const inputMessages = messagesSnapshot.map(({role, content}) => ({
           role,
@@ -172,20 +165,6 @@ export function useChat({
         })
         const res = await fetch(api, {
           method: 'POST',
-          // body: JSON.stringify({
-          //   messages: sendExtraMessageFields
-          //     ? messagesSnapshot
-          //     : messagesSnapshot.map(({role, content}) => ({
-          //       role,
-          //       content
-          //     })),
-          //   ...extraMetadataRef.current.body,
-          //   ...options?.body,
-          //   chatId,
-          //   copilotName,
-          //   responseMessageId,
-          //   email: user?.email,
-          // }),
           body: requestBody,
           headers: {
             "Content-Type": "application/json",
@@ -241,6 +220,9 @@ export function useChat({
                 message: chunk.loading_message.message,
                 calledCopilot: chunk.loading_message.called_copilot || undefined
               }
+            }
+            if (chunk.response_message_id) {
+              responseMessageId = chunk.response_message_id
             }
           }
           await mutate(

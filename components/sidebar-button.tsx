@@ -22,8 +22,10 @@ export function SidebarButton({}: SidebarButtonProps) {
       <div className="absolute left-2 top-1 flex h-6 w-6 items-center justify-center">
         <IconPlus className="mr-2"/>
       </div>
-      <Link
-        href={"/"}
+      <div
+        onClick={() => {
+          window.location.reload()
+        }}
         className={cn(
           buttonVariants({variant: 'ghost'}),
           'group w-full pl-8 pr-16',
@@ -36,7 +38,7 @@ export function SidebarButton({}: SidebarButtonProps) {
         >
           <span className="whitespace-nowrap">New Chat</span>
         </div>
-      </Link>
+      </div>
       {/*{isActive && <div className="absolute right-2 top-1">{children}</div>}*/}
     </div>
   )

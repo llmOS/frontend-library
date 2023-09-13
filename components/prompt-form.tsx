@@ -54,7 +54,7 @@ export function PromptForm(
             <div
               onClick={() => {
                 // A bit hacky solution to actually force reload immediately
-                window.location.href = window.location.origin
+                window.location.reload()
               }}
               className={cn(
                 // buttonVariants({size: 'sm', variant: 'outline'}),

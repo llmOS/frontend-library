@@ -7,7 +7,6 @@ import {ThemeProviderProps} from 'next-themes/dist/types'
 
 import {TooltipProvider} from '@/components/ui/tooltip'
 import {CopilotProvider} from "@/lib/hooks/copilot-provider";
-import {UserProvider as Auth0UserProvider} from "@auth0/nextjs-auth0/client";
 import {UserProvider} from "@/lib/hooks/user-provider";
 import { SidebarProvider } from '@/lib/hooks/sidebar-provider'
 
@@ -30,11 +29,9 @@ export function Providers({children, ...props}: ThemeProviderProps) {
       <TooltipProvider>
         <CopilotProvider>
           <UserProvider>
-            <Auth0UserProvider>
               <SidebarProvider>
                 {children}
               </SidebarProvider>
-            </Auth0UserProvider>
           </UserProvider>
         </CopilotProvider>
       </TooltipProvider>
