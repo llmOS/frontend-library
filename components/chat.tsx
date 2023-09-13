@@ -85,47 +85,46 @@ export function Chat(
     })
 
   async function getDebugMetrics(messageId: string, isAutomatic: boolean) {
-    return
-    // TODO
-    // setIsDebugLoading(true)
-    // try {
-    //   const response = await fetch(`${window.location.origin}/api/debug`, {
-    //     method: "POST",
-    //     headers: {
-    //       "accept": "application/json",
-    //       "Content-Type": "application/json",
-    //       "Authorization": `Bearer ${jwt || ""}`,
-    //       "email": email || ""
-    //     },
-    //     body: JSON.stringify({
-    //       conversationId: id,
-    //       messageId
-    //     })
-    //   });
-    //   const responseJson = await response.json()
-    //   const metrics: DebugMetrics = {
-    //     promptTemplate: getFormattedValueWithTokens(responseJson.prompt_template),
-    //     dataSources: responseJson.data_sources || "",
-    //     userQuestion: getFormattedValueWithTokens(responseJson.user_question),
-    //     citations: getFormattedValueWithTokens(responseJson.citations),
-    //     context: getFormattedValueWithTokens(responseJson.context),
-    //     chatHistory: getFormattedValueWithTokens(responseJson.chat_history),
-    //     fullPrompt: getFormattedValueWithTokens(responseJson.full_prompt),
-    //     llmResponse: getFormattedValueWithTokens(responseJson.llm_response),
-    //   }
-    //   // TODO: add to some kind of basic cache as well
-    //   setDebugMetrics(metrics)
-    //   setDebugMessageId(messageId)
-    //   if (isAutomatic) {
-    //     // messages.length not updated here yet
-    //     setDebugMessageNumber(Math.trunc((messages.length + 2) / 2))
-    //   } else {
-    //     setDebugMessageNumber(Math.trunc((messages.findIndex(m => m.id === messageId) + 1) / 2))
-    //   }
-    // } catch (error) {
-    //   console.error('There has been a problem with your fetch operation:', error);
-    // }
-    // setIsDebugLoading(false)
+    setIsDebugLoading(true)
+    try {
+      let baseUrl = "/v0/debug"
+      if (apiBaseUrl) {
+        baseUrl = (new URL("/v0/debug", apiBaseUrl)).toString();
+      }
+
+
+      const response = await fetch(`${baseUrl}/${id}/${messageId}`, {
+        method: "GET",
+        headers: {
+          "accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt || ""}`,
+        },
+      });
+      const responseJson = await response.json()
+      const metrics: DebugMetrics = {
+        promptTemplate: getFormattedValueWithTokens(responseJson.prompt_template),
+        dataSources: responseJson.data_sources || "",
+        userQuestion: getFormattedValueWithTokens(responseJson.user_question),
+        citations: getFormattedValueWithTokens(responseJson.citations),
+        context: getFormattedValueWithTokens(responseJson.context),
+        chatHistory: getFormattedValueWithTokens(responseJson.chat_history),
+        fullPrompt: getFormattedValueWithTokens(responseJson.full_prompt),
+        llmResponse: getFormattedValueWithTokens(responseJson.llm_response),
+      }
+      // TODO: add to some kind of basic cache as well
+      setDebugMetrics(metrics)
+      setDebugMessageId(messageId)
+      if (isAutomatic) {
+        // messages.length not updated here yet
+        setDebugMessageNumber(Math.trunc((messages.length + 2) / 2))
+      } else {
+        setDebugMessageNumber(Math.trunc((messages.findIndex(m => m.id === messageId) + 1) / 2))
+      }
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
+    }
+    setIsDebugLoading(false)
   }
 
   function getFormattedValueWithTokens(valueWithTokens: any): DebugMetric {
@@ -203,9 +202,9 @@ export function Chat(
                 className="oc-border-r oc-bg-background oc-opacity-100 oc-shadow-lg oc-inset-y-0 oc-flex oc-h-auto oc-w-[400px] oc-flex-col oc-p-0 oc-z-10"
                 style={{
                   overflowY: "auto",
-                  height: "calc(100vh - 4rem)",
+                  height: "calc(100vh - 1rem)",
                   position: "fixed",
-                  top: "4rem",
+                  top: "1rem",
                   bottom: 0,
                   right: 0,
                   minWidth: "400px"
@@ -229,12 +228,12 @@ const DebugTrigger = ({isDebugOpen, onClick}: { isDebugOpen: boolean, onClick: (
     style={
       isDebugOpen ? {
         position: "fixed",
-        top: "4rem",
+        top: "1rem",
         right: "400px",
         zIndex: 2,
       } : {
         position: "fixed",
-        top: "4rem",
+        top: "1rem",
         right: "0",
         zIndex: 2,
       }}
