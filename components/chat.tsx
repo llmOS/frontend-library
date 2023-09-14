@@ -202,10 +202,9 @@ export function Chat(
                 className="oc-border-r oc-bg-background oc-opacity-100 oc-shadow-lg oc-inset-y-0 oc-flex oc-h-auto oc-w-[400px] oc-flex-col oc-p-0 oc-z-10"
                 style={{
                   overflowY: "auto",
-                  height: "calc(100vh - 1rem)",
+                  height: "100vh",
                   position: "fixed",
-                  top: "1rem",
-                  bottom: 0,
+                  top: 0,
                   right: 0,
                   minWidth: "400px"
                 }}>
