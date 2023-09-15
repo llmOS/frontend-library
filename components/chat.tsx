@@ -20,6 +20,7 @@ export interface ChatProps extends React.ComponentProps<'div'> {
   isDebug?: boolean
   apiUrl?: string
   authToken?: string
+  copilotIconSource?: string | undefined
 }
 
 export function Chat(
@@ -30,6 +31,7 @@ export function Chat(
     isDebug,
     apiUrl,
     authToken,
+    copilotIconSource,
   }: ChatProps) {
   const apiBaseUrl: string | null = apiUrl || null
   const {userId, jwt, email, setJwt} = useUser()
@@ -178,6 +180,7 @@ export function Chat(
                   onDebugMessage={onDebugMessage}
                   debugMessageId={debugMessageId}
                   apiBaseUrl={apiBaseUrl}
+                  copilotIconSource={copilotIconSource}
                 />
                 <ChatScrollAnchor trackVisibility={isLoading}/>
               </>

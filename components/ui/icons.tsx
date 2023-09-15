@@ -9,19 +9,11 @@ import copilotIconUnity from "../../public/unity/icon.svg";
 import copilotIconDefault from "../../public/default/logo2.png"
 
 interface IconCopilotProps {
-  copilotName: string
+  source: string | undefined
 }
 
-function IconCopilot({copilotName}: IconCopilotProps) {
-  // TODO: convert to <img>?
-  // if (copilotName === "unity") {
-  //   return (<Image src={copilotIconUnity} alt="logo" width={24} height={24}/>)
-  // }
-  // if (copilotName === "rpm") {
-  //   return (<Image src={copilotIconRpm} alt="logo" width={24} height={24}/>)
-  // }
-  // return (<Image src={copilotIconDefault} alt="logo" width={24} height={24}/>)
-  return <></>
+function IconCopilot({source}: IconCopilotProps) {
+  return <img src={source} alt="icon"/>
 }
 
 function IconGoogle({className, ...props}: React.ComponentProps<'svg'>) {
