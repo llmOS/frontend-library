@@ -16,9 +16,14 @@ Install pnpm
 npm install -g pnpm
 ```
 
+Install packages
+```
+pnpm install
+```
+
 Building:
 ```
-pnpm run build-library
+pnpm run build
 ```
 This generates .js file in the "dist" directory
 
