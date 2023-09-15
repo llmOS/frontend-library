@@ -13,7 +13,10 @@ interface IconCopilotProps {
 }
 
 function IconCopilot({source}: IconCopilotProps) {
-  return <img src={source} alt="icon"/>
+  if (source) {
+    return <img src={source} alt="icon"/>
+  }
+  return <></>
 }
 
 function IconGoogle({className, ...props}: React.ComponentProps<'svg'>) {
