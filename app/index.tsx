@@ -15,9 +15,10 @@ interface Props {
   apiUrl?: string
   authToken?: string
   isDebug?: boolean
+  copilotIcon?: string
 }
 
-export const initialize = ({elementId, theme, apiUrl, authToken, isDebug}: Props) => {
+export const initialize = ({elementId, theme, apiUrl, authToken, isDebug, copilotIcon}: Props) => {
   ReactDOM.render(
     <OpenCopilot
       elementId={elementId}
@@ -25,18 +26,27 @@ export const initialize = ({elementId, theme, apiUrl, authToken, isDebug}: Props
       apiUrl={apiUrl}
       authToken={authToken}
       isDebug={isDebug}
+      copilotIcon={copilotIcon}
     />,
     document.getElementById(elementId)
   );
 }
 
 
-const OpenCopilot = ({theme, apiUrl, authToken, isDebug}: Props) => {
+const OpenCopilot = ({theme, apiUrl, authToken, isDebug, copilotIcon}: Props) => {
   const id = v4()
   return <>
     <div className={theme === "light" ? "oc-light" : "oc-dark"} style={{height: "100%", position: "relative"}}>
       <div style={{height: "100%", width: "100%"}} className={"oc-base"}>
-        {Providers(<Chat id={id} apiUrl={apiUrl} authToken={authToken} isDebug={!!isDebug}/>)}
+        {Providers(
+          <Chat
+            id={id}
+            apiUrl={apiUrl}
+            authToken={authToken}
+            isDebug={!!isDebug}
+            copilotIconSource={copilotIcon}
+          />
+        )}
       </div>
     </div>
   </>
@@ -46,9 +56,9 @@ const Providers = (children: React.ReactNode) => {
   return <TooltipProvider>
     <CopilotProvider>
       <UserProvider>
-          <SidebarProvider>
-            {children}
-          </SidebarProvider>
+        <SidebarProvider>
+          {children}
+        </SidebarProvider>
       </UserProvider>
     </CopilotProvider>
   </TooltipProvider>

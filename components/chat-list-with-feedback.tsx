@@ -21,11 +21,12 @@ export interface ChatListWithFeedbackProps
   isDebug?: boolean
   onDebugMessage: (messageId: string) => void
   debugMessageId: string | undefined
-  apiBaseUrl: string | null
+  apiBaseUrl: string | null,
+  copilotIconSource?: string | undefined
 }
 
 export function ChatListWithFeedback(
-  {isLoading, id, messages, isDebug, onDebugMessage, debugMessageId, apiBaseUrl}: ChatListWithFeedbackProps
+  {isLoading, id, messages, isDebug, onDebugMessage, debugMessageId, apiBaseUrl, copilotIconSource}: ChatListWithFeedbackProps
 ) {
   const {email, jwt} = useUser()
 
@@ -43,6 +44,7 @@ export function ChatListWithFeedback(
             isDebug={isDebug}
             onDebugMessage={onDebugMessage}
             debugMessageId={debugMessageId}
+            copilotIconSource={copilotIconSource}
           />
           {index < messages.length - 1 && (
             <Separator className="oc-my-4 md:oc-my-8"/>

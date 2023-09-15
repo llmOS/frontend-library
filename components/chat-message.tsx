@@ -16,10 +16,11 @@ export interface ChatMessageProps {
   isDebug?: boolean
   onDebugMessage: (messageId: string) => void
   debugMessageId?: string | undefined
+  copilotIconSource?: string | undefined
 }
 
 export function ChatMessage(
-  {message, isDebug, onDebugMessage, debugMessageId, ...props}: ChatMessageProps) {
+  {message, isDebug, onDebugMessage, debugMessageId, copilotIconSource, ...props}: ChatMessageProps) {
   // This should only be done once I guess and not duplicated
   const [copilotName, setCopilotName] = useState<string | undefined>();
   useEffect(() => {
@@ -40,7 +41,7 @@ export function ChatMessage(
       {...props}
     >
       {(message.loadingMessage && !message.content && !message.error) ?
-        <LoadingMessage loadingMessage={message.loadingMessage} copilotName={copilotName}/>
+        <LoadingMessage loadingMessage={message.loadingMessage} copilotIconSource={copilotIconSource}/>
         :
         <>
           <div className="oc-flex oc-flex-col">
@@ -52,8 +53,9 @@ export function ChatMessage(
                   : 'oc-bg-primary oc-text-primary-foreground'
               )}
             >
-              {message.role === 'user' ? <IconUser/> : <IconCopilot copilotName={copilotName}/>}
-              {message.error && <IconError className={"oc-absolute oc-w-4 oc-h-4"} style={{top: "1.2rem", left: "1.2rem"}}/>}
+              {message.role === 'user' ? <IconUser/> : <IconCopilot source={copilotIconSource}/>}
+              {message.error &&
+                  <IconError className={"oc-absolute oc-w-4 oc-h-4"} style={{top: "1.2rem", left: "1.2rem"}}/>}
             </div>
             {(isDebug && message.role !== "user") &&
                 <div className="oc-pt-4">
@@ -139,7 +141,10 @@ export function ChatMessage(
 }
 
 
-function LoadingMessage({loadingMessage, copilotName}: { loadingMessage: LoadingMessageType, copilotName: string }) {
+function LoadingMessage({loadingMessage, copilotIconSource}: {
+  loadingMessage: LoadingMessageType,
+  copilotIconSource: string | undefined
+}) {
   return <>
     <div
       className={cn(
@@ -147,7 +152,7 @@ function LoadingMessage({loadingMessage, copilotName}: { loadingMessage: Loading
         'oc-bg-white oc-text-primary-foreground'
       )}
     >
-      <IconCopilot copilotName={loadingMessage.calledCopilot || copilotName}/>
+      <IconCopilot source={copilotIconSource}/>
     </div>
     <div className="oc-ml-4 oc-h-8 oc-flex-1 oc-space-y-2 oc-overflow-hidden oc-px-1">
         <span
